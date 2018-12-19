@@ -14,12 +14,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Personage perso1 = new Warrior("Joueur 1");
-		perso1.description();
 		
 		Personage perso2 = new Mage("Joueur 2");
-		perso2.description();
 		
 		Personage perso3 = new Sniper("Joueur 3");
-		perso3.description();
 	}
 }
