@@ -40,7 +40,7 @@ public class Warrior extends Personage {
 
 		// The personage receives also damages
 		damages = this.getStrength() / 2;
-		personage.takeAttack(damages);
+		this.takeAttack(damages);
 	}
 	
 	@Override

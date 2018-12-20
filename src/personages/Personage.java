@@ -1,7 +1,8 @@
 package personages;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import tools.Tools;
 
 /**
  * @author YannMancel
@@ -16,19 +17,26 @@ public class Personage {
 		// For receive the values with the keyboard
 		this.scan = new Scanner(System.in);
 		
+		boolean goodChoice = false;
+		
+		while (!goodChoice) {
+			// Receives the characteristics of the personage
+			creationOfCharacteristics();
+			
+			if ((this.strength + this.agility + this.intelligence) != this.level) {
+				// Displays the terminal messages
+				System.out.println("La somme Force + Agilité + Intelligence doit être égale au niveau du personnage !");				
+				System.out.println("Recommencez la boucle de saisie");
+			}
+			else 
+				goodChoice = true;
+		}	
+		
 		// Name:
 		this.name = name;		
-		// Level:
-		this.level = askToUser("Niveau", 1, 100);		
-		// Vitality:
-		this.vitality = 5 * this.level;
-		this.initialVitality = this.vitality;		
-		// Strength:
-		this.strength = askToUser("Force", 0, 100);		
-		// Agility:
-		this.agility = askToUser("Agilité", 0, 100);		
-		// Intelligence:
-		this.intelligence = askToUser("Intelligence", 0, 100);	
+
+		// Initial vitality:
+		this.initialVitality = this.vitality;
 		
 		// Displays the description
 		this.description();
@@ -144,8 +152,13 @@ public class Personage {
 		// Vitality lost
 		if (vitalityTest >= 0)
 			this.vitality -= damages;
-		else
-			this.vitality = 0; 
+		else {
+			this.vitality = 0;
+		}
+		
+		// Displays a terminal message
+		if (this.vitality == 0)
+			System.out.println(this.name + " est mort.");
 	}
 	
 
@@ -159,7 +172,7 @@ public class Personage {
 	                       this.vitality     + " de vitalité, " + 
 	                       this.strength     + " de force, "    +
 	                       this.agility      + " d'agilité et " + 
-	                       this.intelligence + " d'intelligence!");
+	                       this.intelligence + " d'intelligence !");
 	}
 	
 	
@@ -177,20 +190,29 @@ public class Personage {
 		System.out.println(scope + " du personnage ?");
 		
 		// Gets back the choice
-	    int choice = -1;
-	    
-	    // The choice must be in the range [minValue ; maxValue]
-	    do {
-	    	try {
-	    		choice = this.scan.nextInt();
-	    	}
-	    	catch (InputMismatchException e) {
-	    		this.scan.next();				
-	    		System.out.print("Veuilliez saisir un entier, s'il vous plaît!");
-	    	}	    	
-	    } while (choice < minValue || choice > maxValue);
-	    
+	    int choice = Tools.askToUser(this.scan, minValue, maxValue);
+
 		return choice;
+	}
+	
+	
+	// ====== CHARACTERISTICS ======
+	
+	private void creationOfCharacteristics() {
+		// Level:
+		this.level = askToUser("Niveau", 1, 100);	
+		
+		// Vitality:
+		this.vitality = 5 * this.level;	
+		
+		// Strength:
+		this.strength = askToUser("Force", 0, 100);	
+		
+		// Agility:
+		this.agility = askToUser("Agilité", 0, 100);
+		
+		// Intelligence:
+		this.intelligence = askToUser("Intelligence", 0, 100);	
 	}
 	
 	//---------------------------------------------------------------------------------------------

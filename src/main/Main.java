@@ -1,6 +1,6 @@
 package main;
 
-import personages.*;
+import game.MagiWorld;
 
 /**
  * @author YannMancel
@@ -8,15 +8,11 @@ import personages.*;
 public class Main {
 
 	/**
-	 * 
 	 * @param args a String array object that contains the command line arguments
 	 */
 	public static void main(String[] args) {
 		
-		Personage perso1 = new Warrior("Joueur 1");
-		
-		Personage perso2 = new Mage("Joueur 2");
-		
-		Personage perso3 = new Sniper("Joueur 3");
+		MagiWorld game = new MagiWorld();
+		game.run();
 	}
 }

@@ -36,7 +36,7 @@ public class Sniper extends Personage {
 		System.out.println(this.getName() + " utilise Concentration et gagne " + gains + " d'agilité.");
 		
 		// Add the gain to the agility
-		// TO DO => personage.getAgility();
+		// TO DO => this.getAgility();
 	}
 	
 	@Override

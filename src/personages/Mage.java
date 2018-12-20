@@ -36,7 +36,7 @@ public class Mage extends Personage {
 		System.out.println(this.getName() + " utilise Soin et gagne " + gains + " en vitalité.");
 
 		// Add the gain to the vitality
-		// TO DO => personage.getVitality();
+		// TO DO => this.getVitality();
 	}
 
 	@Override
