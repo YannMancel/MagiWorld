@@ -3,6 +3,7 @@ package game;
 import java.util.Scanner;
 
 import personages.*;
+
 import tools.Tools;
 
 /**
@@ -79,7 +80,7 @@ public class MagiWorld {
 				
 				// Displays a terminal message that says the name of the looser
 				if (this.players[i==0 ? 1 : 0].getVitality() == 0) {
-					System.out.println(this.players[i==0 ? 1 : 0].getName() + " a perdu");
+					System.out.println(this.players[i==0 ? 1 : 0].getName() + " a perdu !");
 					return;
 				}
 			}

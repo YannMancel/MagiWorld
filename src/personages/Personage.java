@@ -101,21 +101,7 @@ public class Personage {
 	 */
 	public int getIntelligence() {
 		return this.intelligence;
-	}	
-	
-	
-	// ====== SETTER ======
-	
-	/**
-	 * Modifies the level and the vitality
-	 * @param level an integer that contains the new level
-	 */
-	/*
-	public void setLevel(int level) {
-		this.level = level;
-		this.vitality = 5 * level;
 	}
-	*/
 	
 	
 	// ====== ATTACK ======
@@ -138,29 +124,6 @@ public class Personage {
 		System.out.println(this.getName() + " est un simple personnage. Il n'attaque pas.");
 	}
 	
-	/**
-	 * Takes a attack by an enemy
-	 * @param damages a integer that contains the damage values
-	 */
-	public void takeAttack(int damages) {
-		// Displays a terminal message		
-		System.out.println(this.name + " perd " + damages + " points de vie.");
-		
-		// Allows to know if the vitality lost is possible
-		int vitalityTest = this.vitality - damages;
-		
-		// Vitality lost
-		if (vitalityTest >= 0)
-			this.vitality -= damages;
-		else {
-			this.vitality = 0;
-		}
-		
-		// Displays a terminal message
-		if (this.vitality == 0)
-			System.out.println(this.name + " est mort.");
-	}
-	
 
 	// ====== DESCRIPTION ======
 	
@@ -174,7 +137,57 @@ public class Personage {
 	                       this.agility      + " d'agilité et " + 
 	                       this.intelligence + " d'intelligence !");
 	}
+
 	
+	// ====== GAIN and LOSS ======
+	
+	/**
+	 * Takes a attack by an enemy
+	 * @param damages a integer that contains the damage values
+	 */
+	protected void takeAttack(int damages) {
+		// Displays a terminal message		
+		System.out.println(this.name + " perd " + damages + " points de vie.");
+		
+		// Allows to know if the vitality lost is possible
+		int vitalityTest = this.vitality - damages;
+		
+		// Vitality lost
+		if (vitalityTest >= 0)
+			this.vitality -= damages;
+		else
+			this.vitality = 0;
+		
+		// Displays a terminal message
+		if (this.vitality == 0)
+			System.out.println(this.name + " est mort.");
+	}
+	
+	/**
+	 * Takes the received gains
+	 * @param gainType a integer that contains one of these values (1: Level, 2: Vitality, 3: Strength, 4: Agility, 5: Intelligence)
+	 * @param gains a integer that contains the gain value
+	 */
+	protected void takeGains(int gainType, int gains) {
+		// gainType determines the gain choice
+		switch (gainType) {
+		case 1:
+			this.level += gains;
+			break;
+		case 2:
+			this.vitality += gains;
+			break;
+		case 3:
+			this.strength += gains;
+			break;
+		case 4:
+			this.agility += gains;
+			break;
+		case 5:
+			this.intelligence += gains;
+			break;
+		}
+	}
 	
 	// ====== ASK ======
 	
@@ -185,7 +198,7 @@ public class Personage {
 	 * @param maxValue a integer that contains the maximal bound of validity
 	 * @return the returned value
 	 */
-	public int askToUser(String scope, int minValue, int maxValue) {
+	private int askToUser(String scope, int minValue, int maxValue) {
 		// Displays a terminal message
 		System.out.println(scope + " du personnage ?");
 		
@@ -198,6 +211,9 @@ public class Personage {
 	
 	// ====== CHARACTERISTICS ======
 	
+	/**
+	 * Allows to initialize the characteristics of the personage
+	 */
 	private void creationOfCharacteristics() {
 		// Level:
 		this.level = askToUser("Niveau", 1, 100);	
