@@ -36,7 +36,7 @@ public class Personage {
 		this.name = name;		
 
 		// Initial vitality:
-		this.initialVitality = this.vitality;
+		this.INITIAL_VITALITY = this.vitality;
 		
 		// Displays the description
 		this.description();
@@ -76,7 +76,7 @@ public class Personage {
 	 * @return an integer that contains the initial vitality
 	 */
 	public int getInitialVitality() {
-		return this.initialVitality;
+		return this.INITIAL_VITALITY;
 	}
 	
 	/**
@@ -239,7 +239,7 @@ public class Personage {
 	private int strength;
 	private int agility;
 	private int intelligence;
-	private final int initialVitality;
+	private final int INITIAL_VITALITY;
 	
 	private Scanner scan;
 }
